@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piano Barroco 3D</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.164.1/build/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage-panel" aria-label="Piano 3D interactivo">
+        <canvas id="piano-canvas"></canvas>
+        <div id="label-layer" class="label-layer" aria-hidden="true"></div>
+      </section>
+
+      <header class="topbar">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <h1>Piano Barroco 3D</h1>
+          <p id="range-readout">C3 - B4</p>
+        </div>
+      </header>
+
+      <aside class="control-dock" aria-label="Controles del piano">
+        <label class="control-field">
+          <span>Sonido</span>
+          <select id="sound-select">
+            <option value="clavecin">Clavecin</option>
+            <option value="organo">Organo barroco</option>
+            <option value="cristal">Cristal</option>
+            <option value="bronce">Bronce</option>
+            <option value="analogico">Analogico</option>
+          </select>
+        </label>
+
+        <label class="control-field">
+          <span>Volumen</span>
+          <input id="volume-slider" type="range" min="0" max="1" value="0.74" step="0.01" />
+        </label>
+
+        <div class="range-switch" role="group" aria-label="Rango del teclado">
+          <button class="range-button active" type="button" data-range="0">I</button>
+          <button class="range-button" type="button" data-range="1">II</button>
+        </div>
+      </aside>
+
+      <div class="corner-flourish top-left" aria-hidden="true"></div>
+      <div class="corner-flourish top-right" aria-hidden="true"></div>
+      <div class="corner-flourish bottom-left" aria-hidden="true"></div>
+      <div class="corner-flourish bottom-right" aria-hidden="true"></div>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
