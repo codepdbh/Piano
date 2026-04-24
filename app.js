@@ -123,6 +123,7 @@ let currentPreset = soundSelect.value;
 let currentRange = 0;
 let noteToBinding = new Map();
 let audioEngine;
+let pianoGroup;
 
 const pressedCodes = new Map();
 const activePointers = new Map();
@@ -316,7 +317,9 @@ function initLights() {
 
 function buildPiano() {
   const piano = new THREE.Group();
+  pianoGroup = piano;
   piano.rotation.x = -0.08;
+  piano.scale.x = 0.78;
   scene.add(piano);
 
   const keyboardWidth = WHITE_COUNT * WHITE_WIDTH;
@@ -545,7 +548,7 @@ function handleKeyDown(event) {
     return;
   }
 
-  if (event.repeat || isFormElementFocused()) {
+  if (event.repeat) {
     return;
   }
 
@@ -723,8 +726,12 @@ function resize() {
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(width, height, false);
+  camera.fov = 42;
   camera.aspect = width / height;
-  camera.position.set(0, isCompact ? 10.4 : 7.8, isCompact ? 18.2 : 14.2);
+  camera.position.set(0, isCompact ? 11.2 : 7.8, isCompact ? 22 : 16.2);
+  if (pianoGroup) {
+    pianoGroup.scale.x = isCompact ? 0.72 : 0.78;
+  }
   camera.lookAt(0, 0.48, -0.45);
   camera.updateProjectionMatrix();
 }
@@ -744,9 +751,4 @@ function midiToFrequency(midi) {
 
 function midiToName(midi) {
   return `${NOTE_NAMES[midi % 12]}${Math.floor(midi / 12) - 1}`;
-}
-
-function isFormElementFocused() {
-  const tagName = document.activeElement?.tagName;
-  return tagName === "SELECT" || tagName === "INPUT" || tagName === "BUTTON";
 }

@@ -391,10 +391,18 @@ input[type="range"] {
   }
 
   .key-label {
-    min-width: 23px;
-    height: 24px;
-    padding: 0 5px;
-    font-size: 0.68rem;
-    line-height: 22px;
+    min-width: 19px;
+    height: 21px;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    line-height: 19px;
+  }
+
+  .key-label.black {
+    min-width: 18px;
+    height: 20px;
+    font-size: 0.58rem;
+    line-height: 18px;
   }
 }
